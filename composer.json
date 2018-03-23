@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Swoft\\Trace": "src/"
+            "Swoft\\Trace\\": "src/"
         }
     },
     "require-dev": {
