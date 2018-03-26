@@ -2,14 +2,29 @@
 
 namespace Swoft\Trace;
 
+use Swoft\Bean\Annotation\Bean;
+use Swoft\Core\RequestContext;
+
 /**
- * @uses      Tracer
- * @version   2018年03月24日
- * @author    huangzhhui <huangzhwork@gmail.com>
- * @copyright Copyright 2010-2018 Swoft software
- * @license   PHP Version 7.x {@link http://www.php.net/license/3_0.txt}
+ * @Bean()
  */
 class Tracer
 {
+
+    /**
+     * @param string $method
+     */
+    public function trace(string $method)
+    {
+        RequestContext::setContextDataByKey('callStack', array_merge($this->getCallStack(), [$method]));
+    }
+
+    /**
+     * @return array
+     */
+    public function getCallStack(): array
+    {
+        return (array)RequestContext::getContextDataByKey('callStack');
+    }
 
 }
